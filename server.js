@@ -1,69 +1,73 @@
-// This line loads the built-in http module to create the server
+// Load the http and fs modules
 const http = require('http');
-
-// This line loads the built-in fs module to read files
 const fs = require('fs');
 
-// Create the HTTP server using the http module
+// Create the server using http module
 const server = http.createServer((req, res) => {
 
-  // Log the incoming request URL (for testing purposes)
-  console.log("Request URL:", req.url);
+  // Log the requested URL
+  console.log('Request URL:', req.url);
 
-  // If the user visits the home page
-  if (req.url === '/') {
-    // Read the index.html file from the same folder
-    fs.readFile('index.html', (err, data) => {
+  // Serve Home Page
+  if (req.url === '/' || req.url === '/index') {
+    fs.readFile('./index.html', (err, data) => {
       if (err) {
-        // If there is an error reading the file, send a 500 error response
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Error loading index.html');
+        res.writeHead(500);
+        res.end('Server Error');
       } else {
-        // If file is found, send it with content type as HTML
-        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.setHeader('Content-Type', 'text/html');
+        res.writeHead(200);
         res.end(data);
       }
     });
 
-  // If the user visits the /about page
+  // Serve About Page
   } else if (req.url === '/about') {
-    // Read the about.html file
-    fs.readFile('about.html', (err, data) => {
+    fs.readFile('./about.html', (err, data) => {
       if (err) {
-        // If error occurs, send 500 error
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Error loading about.html');
+        res.writeHead(500);
+        res.end('Server Error');
       } else {
-        // If file is found, send HTML response
-        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.setHeader('Content-Type', 'text/html');
+        res.writeHead(200);
         res.end(data);
       }
     });
 
-  // If the user visits the /contact page
+  // Serve Contact Page
   } else if (req.url === '/contact') {
-    // Read the contact.html file
-    fs.readFile('contact.html', (err, data) => {
+    fs.readFile('./contact.html', (err, data) => {
       if (err) {
-        // Handle file read error
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Error loading contact.html');
+        res.writeHead(500);
+        res.end('Server Error');
       } else {
-        // Send the contact page with proper content type
-        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.setHeader('Content-Type', 'text/html');
+        res.writeHead(200);
         res.end(data);
       }
     });
 
-  // If user visits any other route (unknown path)
+  // Serve CSS File (Bonus Part)
+  } else if (req.url === '/style.css') {
+    fs.readFile('./style.css', (err, data) => {
+      if (err) {
+        res.writeHead(500);
+        res.end('Server Error');
+      } else {
+        res.setHeader('Content-Type', 'text/css');
+        res.writeHead(200);
+        res.end(data);
+      }
+    });
+
+  // Show 404 Page for unknown routes
   } else {
-    // Send a 404 response with plain text message
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('404 Page Not Found');
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.end('<h1>404 - Page Not Found</h1>');
   }
 });
 
-// Start the server and listen on port 3000
+// Set the server to listen on port 3000
 server.listen(3000, () => {
-  console.log('Server is running at http://localhost:3000');
+  console.log('Server is running on http://localhost:3000');
 });

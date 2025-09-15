@@ -1,0 +1,61 @@
+/* Reset & Body */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: black; /* Black background for all pages */
+}
+
+/* Navbar */
+.navbar {
+  background-color: #000000; /* Deep orange */
+  padding: 15px 10px;
+  margin-top: 15px;
+  margin: 15px;
+}
+
+.navbar a {
+  color: white;
+   background-color: #FF5722; 
+  text-decoration: none;
+  padding: 12px 20px;
+  margin: 0 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #740309; 
+  border-radius: 5px;
+}
+
+/* Header */
+.header {
+  background-color: #003366; 
+  color: orange;            
+  padding: 100px 0;           
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.8em;
+  color: orange;
+}
+
+/* Welcome Text */
+.welcome {
+  font-size: 1.6em;
+  color:  #FF5722; 
+  margin-top: 40px;
+}
+
+/* Paragraph Description */
+.description {
+  font-size: 1.1em;
+  color: white;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 20px;
+  line-height: 1.6;
+}
