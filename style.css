@@ -1,15 +1,15 @@
-/* Reset & Body */
+/* Body */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: black; /* Black background for all pages */
+  background-color: black; 
 }
 
 /* Navbar */
 .navbar {
-  background-color: #000000; /* Deep orange */
+  background-color: #000000; 
   padding: 15px 10px;
   margin-top: 15px;
   margin: 15px;

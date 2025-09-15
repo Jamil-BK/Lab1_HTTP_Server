@@ -1,12 +1,17 @@
+
+
 // Load the http and fs modules
 const http = require('http');
 const fs = require('fs');
 
-// Create the server using http module
+
+// To create the server using http module
 const server = http.createServer((req, res) => {
+
 
   // Log the requested URL
   console.log('Request URL:', req.url);
+
 
   // Serve Home Page
   if (req.url === '/' || req.url === '/index') {
@@ -21,6 +26,7 @@ const server = http.createServer((req, res) => {
       }
     });
 
+
   // Serve About Page
   } else if (req.url === '/about') {
     fs.readFile('./about.html', (err, data) => {
@@ -33,6 +39,7 @@ const server = http.createServer((req, res) => {
         res.end(data);
       }
     });
+
 
   // Serve Contact Page
   } else if (req.url === '/contact') {
@@ -47,6 +54,7 @@ const server = http.createServer((req, res) => {
       }
     });
 
+
   // Serve CSS File (Bonus Part)
   } else if (req.url === '/style.css') {
     fs.readFile('./style.css', (err, data) => {
@@ -60,12 +68,14 @@ const server = http.createServer((req, res) => {
       }
     });
 
+
   // Show 404 Page for unknown routes
   } else {
     res.writeHead(404, { 'Content-Type': 'text/html' });
     res.end('<h1>404 - Page Not Found</h1>');
   }
 });
+
 
 // Set the server to listen on port 3000
 server.listen(3000, () => {
